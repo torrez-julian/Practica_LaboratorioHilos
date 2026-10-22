@@ -1,16 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="ni.edu.uam.laboratoriodehilos.HelloController">
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ni.edu.uam.laboratoriodehilos.HelloController"
+      spacing="16"
+      prefWidth="850"
+      prefHeight="620"
+      style="-fx-background-color: #F3F6F8; -fx-font-family: 'Segoe UI';">
+
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets top="24" right="24" bottom="24" left="24"/>
     </padding>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <Label text="Control de ventanillas"
+           style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #243746;"/>
+
+    <Label text="Ejecución concurrente, contador compartido y detención controlada"
+           wrapText="true"
+           style="-fx-font-size: 13px; -fx-text-fill: #627582;"/>
+
+    <HBox spacing="12" alignment="CENTER_LEFT">
+        <Button fx:id="btnIniciar"
+                text="Iniciar"
+                onAction="#iniciar"
+                prefWidth="130"
+                style="-fx-background-color: #28786B; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 11 20; -fx-background-radius: 7;"/>
+
+        <Button fx:id="btnDetener"
+                text="Detener"
+                onAction="#detener"
+                prefWidth="130"
+                style="-fx-background-color: #AE5050; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 11 20; -fx-background-radius: 7;"/>
+
+        <Label fx:id="lblEstado"
+               text="Listo para iniciar"
+               wrapText="true"
+               style="-fx-text-fill: #34495E; -fx-font-weight: bold;"/>
+    </HBox>
+
+    <HBox spacing="16">
+        <VBox spacing="8"
+              HBox.hgrow="ALWAYS"
+              style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 18;">
+            <Label text="CONTADOR COMPARTIDO"
+                   style="-fx-text-fill: #627582; -fx-font-size: 12px;"/>
+
+            <Label fx:id="lblContador"
+                   text="0"
+                   style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #28786B;"/>
+
+            <Label text="Total esperado: 10 unidades"
+                   style="-fx-text-fill: #627582;"/>
+        </VBox>
+
+        <VBox spacing="12"
+              HBox.hgrow="ALWAYS"
+              style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 18;">
+            <Label text="ESTADOS DE LOS HILOS"
+                   style="-fx-text-fill: #627582; -fx-font-size: 12px;"/>
+
+            <HBox spacing="12">
+                <Label text="Ventanilla A:"
+                       style="-fx-font-weight: bold;"/>
+                <Label fx:id="lblEstadoA" text="Sin iniciar"/>
+            </HBox>
+
+            <HBox spacing="12">
+                <Label text="Ventanilla B:"
+                       style="-fx-font-weight: bold;"/>
+                <Label fx:id="lblEstadoB" text="Sin iniciar"/>
+            </HBox>
+        </VBox>
+    </HBox>
+
+    <Label text="Registro de actividad"
+           style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #243746;"/>
+
+    <TextArea fx:id="txtRegistro"
+              editable="false"
+              wrapText="true"
+              VBox.vgrow="ALWAYS"
+              style="-fx-font-family: Consolas; -fx-font-size: 12px;"/>
+
+    <Label text="El botón Iniciar se habilita cuando ambas ventanillas han terminado."
+           wrapText="true"
+           style="-fx-text-fill: #627582; -fx-font-size: 12px;"/>
 </VBox>
